@@ -1,3 +1,6 @@
+2013-04-16 - 0.5.1
+* Update examples in the README to have more variety.
+
 2013-04-15 - 0.5.0
 * Split out the catpuppetconf into a common class, to fix logic.
 * Clean up the master parameters by defaulting most to undef.
