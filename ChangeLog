@@ -1,3 +1,5 @@
+* Work around broken hiera booleans for the agent class.
+
 2013-04-16 - 0.5.1
 * Update examples in the README to have more variety.
 

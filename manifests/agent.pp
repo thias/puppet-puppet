@@ -86,7 +86,7 @@ class puppet::agent (
         mode   => '0750',
     }
 
-    if $service {
+    if $service == true {
         service { 'puppet':
             enable    => true,
             ensure    => running,
