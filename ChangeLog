@@ -1,4 +1,6 @@
+2013-04-19 - 0.5.2
 * Work around broken hiera booleans for the agent class.
+* Use @variable syntax in templates to remove puppet 3.2 warnings.
 
 2013-04-16 - 0.5.1
 * Update examples in the README to have more variety.

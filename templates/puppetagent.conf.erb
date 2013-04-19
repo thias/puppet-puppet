@@ -12,24 +12,24 @@
     ssldir = $vardir/ssl
 
     # To enable custom facts
-    pluginsync = <%= pluginsync %>
-<% main_extraopts.each do |key,value| -%>
+    pluginsync = <%= @pluginsync %>
+<% @main_extraopts.each do |key,value| -%>
     <%= key %> = <%= value %>
 <% end -%>
 
 [agent]
-<% if report -%>
+<% if @report -%>
     # Send report (useful for the Puppet Dashboard)
     report = true
 
 <% end -%>
-<% if puppet_noop -%>
+<% if @puppet_noop -%>
     # Disable running commands. Manual puppet agent runs will allow to
     # apply all pending changes.
     noop = true
 
 <% end -%>
-<% agent_extraopts.each do |key,value| -%>
+<% @agent_extraopts.each do |key,value| -%>
     <%= key %> = <%= value %>
 <% end -%>
 

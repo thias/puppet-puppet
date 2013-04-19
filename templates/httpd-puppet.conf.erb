@@ -14,8 +14,8 @@ RailsAutoDetect Off
     SSLProtocol -ALL +SSLv3 +TLSv1
     SSLCipherSuite ALL:!ADH:RC4+RSA:+HIGH:+MEDIUM:-LOW:-SSLv2:-EXP
 
-    SSLCertificateFile /var/lib/puppet/ssl/certs/<%= https_certname %>.pem
-    SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/<%= https_certname %>.pem
+    SSLCertificateFile /var/lib/puppet/ssl/certs/<%= @https_certname %>.pem
+    SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/<%= @https_certname %>.pem
     SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
     SSLCACertificateFile /var/lib/puppet/ssl/ca/ca_crt.pem
     # If Apache complains about invalid signatures on the CRL, you can try disabling

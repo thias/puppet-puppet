@@ -11,7 +11,7 @@ exec puppet agent \
   --no-daemonize \
   --no-usecacheonfailure \
   --waitforcert 0 \
-  --logdest=<%= puppet_log %> ${CONSOLE} \
-  --server=<%= puppet_server %> \
-  --port=<%= puppet_port %> <%= puppet_extra_opts %> --no-noop $@
+  --logdest=<%= @puppet_log %> ${CONSOLE} \
+  --server=<%= @puppet_server %> \
+  --port=<%= @puppet_port %> <%= @puppet_extra_opts %> --no-noop $@
 
