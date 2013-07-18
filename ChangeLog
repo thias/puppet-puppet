@@ -1,3 +1,6 @@
+2013-07-18 - 0.5.3
+* Fix waitforcert issue with repuppet.
+
 2013-04-19 - 0.5.2
 * Work around broken hiera booleans for the agent class.
 * Use @variable syntax in templates to remove puppet 3.2 warnings.
