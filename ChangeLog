@@ -1,3 +1,8 @@
+2013-09-19 - 0.5.4
+* Make rundir configurable, changing the default on Gentoo.
+* Fix repuppet with puppet agent 3.3.0.
+* Remove waitforcert from the default options, as it doesn't make much sense.
+
 2013-07-18 - 0.5.3
 * Fix waitforcert issue with repuppet.
 

@@ -28,6 +28,7 @@ class puppet::agent (
     $cron_hour          = '*',
     $cron_minute        = fqdn_rand(60),
     # puppet.conf options
+    $rundir             = $::puppet::params::rundir,
     $pluginsync         = 'true',
     $report             = false,
     $autonoop           = false,
@@ -38,7 +39,7 @@ class puppet::agent (
     $puppet_server      = 'puppet',
     $puppet_port        = '8140',
     $puppet_log         = '/var/log/puppet/puppet.log',
-    $puppet_extra_opts  = '--waitforcert=500'
+    $puppet_extra_opts  = ''
 ) inherits puppet::params {
 
     include puppet::common

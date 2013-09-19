@@ -9,8 +9,7 @@
 exec puppet agent \
   --no-usecacheonfailure \
   --logdest=<%= @puppet_log %> ${CONSOLE} \
-  --server=<%= @puppet_server %> \
-  --port=<%= @puppet_port %> <%= @puppet_extra_opts %> \
+  --server=<%= @puppet_server %> <%= @puppet_extra_opts %> \
   --onetime \
   --no-daemonize \
   --waitforcert 0 \
