@@ -1,3 +1,5 @@
+* Force servername when using apache_httpd for the master.
+
 2013-09-19 - 0.5.4
 * Make rundir configurable, changing the default on Gentoo.
 * Fix repuppet with puppet agent 3.3.0.

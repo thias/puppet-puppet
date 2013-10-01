@@ -92,9 +92,9 @@ class puppet::master (
                 notify  => Service['httpd'],
             }
             apache_httpd { 'worker':
-                listen  => '8140',
-                ssl     => true,
-                modules => [
+                listen     => '8140',
+                ssl        => true,
+                modules    => [
                     'auth_basic',
                     'authz_host',
                     'headers',
@@ -104,9 +104,10 @@ class puppet::master (
                     'alias',
                     'rewrite',
                 ],
-                user    => 'puppet',
-                group   => 'puppet',
-                welcome => false,
+                user       => 'puppet',
+                group      => 'puppet',
+                servername => "${https_certname}:8140",
+                welcome    => false,
             }
             file { '/etc/puppet/rack':
                 owner  => 'root',
