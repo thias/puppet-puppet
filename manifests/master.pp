@@ -24,6 +24,7 @@ class puppet::master (
     $dbuser         = undef,
     $dbpassword     = undef,
     $dbsocket       = undef,
+    $rsyslog_file   = false,
     $extraopts      = {}
 ) {
 
@@ -51,11 +52,23 @@ class puppet::master (
             File['/etc/puppet/puppetmaster.conf'] ~> Exec['catpuppetconf']
         }
 
+        if $rsyslog_file != false {
+            file { '/etc/rsyslog.d/puppet-master.conf':
+                owner   => 'root',
+                group   => 'root',
+                mode    => '0644',
+                content => template('puppet/rsyslog-puppet-master.conf.erb'),
+            }
+        } else {
+            file { '/etc/rsyslog.d/puppet-master.conf': ensure => absent }
+        }
+
     } else {
 
         file { [
             '/etc/puppet/puppetmaster.conf',
             '/etc/puppet/puppetagent.conf',
+            '/etc/rsyslog.d/puppet-master.conf',
         ]:
             ensure => absent,
         }

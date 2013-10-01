@@ -1,4 +1,7 @@
+2013-10-01 - 0.5.5
 * Force servername when using apache_httpd for the master.
+* Add support for choosing an rsyslog file for puppet-master messages.
+* Add new puppet::dashboard class, which still needs some more work.
 
 2013-09-19 - 0.5.4
 * Make rundir configurable, changing the default on Gentoo.
