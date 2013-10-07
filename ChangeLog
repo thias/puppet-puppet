@@ -1,3 +1,5 @@
+* Update README, including adding an SELinux note (#3).
+
 2013-10-01 - 0.5.5
 * Force servername when using apache_httpd for the master.
 * Add support for choosing an rsyslog file for puppet-master messages.
