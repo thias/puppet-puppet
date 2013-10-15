@@ -1,4 +1,5 @@
 * Update README, including adding an SELinux note (#3).
+* Remove httpd directives for passenger 4.0.x compatibility.
 
 2013-10-01 - 0.5.5
 * Force servername when using apache_httpd for the master.
