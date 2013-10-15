@@ -11,6 +11,7 @@ class puppet::master (
     $ensure         = 'present',
     $runtype        = 'service',
     $selinux        = $::selinux,
+    $scontext       = 'httpd_passenger_helper_t',
     # puppet.conf options
     $certname       = undef,
     $dns_alt_names  = undef,
@@ -140,7 +141,7 @@ class puppet::master (
             }
             if $selinux and $::selinux_enforced {
                 selinux::audit2allow { 'puppetpassenger':
-                    source => "puppet:///modules/${module_name}/messages.puppetpassenger",
+                    content => template("${module_name}/messages.puppetpassenger.erb"),
                 }
             }
         }
