@@ -11,6 +11,11 @@
     # The default value is '$confdir/ssl'.
     ssldir = $vardir/ssl
 
+    # Allow puppet group read access to private SSL files
+    # For sharing cerfificates with The Foreman for instance
+    privatekeydir = $ssldir/private_keys { group = service }
+    hostprivkey = $privatekeydir/$certname.pem { mode = 640 }
+
     # To enable custom facts
     pluginsync = <%= @pluginsync %>
 <% @main_extraopts.each do |key,value| -%>

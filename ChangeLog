@@ -1,6 +1,7 @@
 * Update README, including adding an SELinux note (#3).
 * Remove httpd directives for passenger 4.0.x compatibility.
 * Add scontext master parameter in case it needs to be httpd_t.
+* Allow group read on private SSL files, allows to integrate with The Foreman.
 
 2013-10-01 - 0.5.5
 * Force servername when using apache_httpd for the master.
