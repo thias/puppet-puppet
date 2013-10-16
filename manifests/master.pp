@@ -48,7 +48,7 @@ class puppet::master (
 
         # This will only work once the puppetmaster fact is installed, it's
         # a chicken and egg problem, which we solve here
-        if $::puppetmaster == 'true' {
+        if $::puppet_puppetmaster == 'true' {
             # Merge agent+master configs for the master
             File['/etc/puppet/puppetmaster.conf'] ~> Exec['catpuppetconf']
         }
@@ -79,7 +79,7 @@ class puppet::master (
     # Main puppet master process, with multiple ways of running it
     case $runtype {
         'service': {
-            if $::puppetmaster == 'true' {
+            if $::puppet_puppetmaster == 'true' {
                 service { 'puppetmaster':
                     enable    => true,
                     ensure    => running,

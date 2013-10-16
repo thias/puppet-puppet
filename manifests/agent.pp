@@ -21,7 +21,7 @@
 class puppet::agent (
     $service            = true,
     $sysconfig          = $::puppet::params::sysconfig,
-    $master             = $::puppetmaster,
+    $master             = $::puppet_puppetmaster,
     # Simple hourly cron job, only if the service is disabled
     $cron_enable        = false,
     $cron_silent        = false,
@@ -48,7 +48,7 @@ class puppet::agent (
 
     # Enable noop by default on all xen and physical hosts and puppetmasters
     # + a few exceptions of non-critical physical hosts
-    if ( ( $virtual == 'xen0' or $virtual == 'physical' or $::puppetmaster == true ) and $autonoop == true ) or $forcenoop == true {
+    if ( ( $virtual == 'xen0' or $virtual == 'physical' or $master == true ) and $autonoop == true ) or $forcenoop == true {
         $puppet_noop = true
     } else {
         $puppet_noop = false
