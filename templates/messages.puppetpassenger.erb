@@ -122,3 +122,5 @@ avc:  denied  { name_connect } for  pid=13056 comm="ruby" dest=8081 scontext=unc
 # New with passenger 4.0
 avc:  denied  { sys_ptrace } for  pid=8180 comm="PassengerHelper" capability=19  scontext=unconfined_u:system_r:<%= @scontext %>:s0 tcontext=unconfined_u:system_r:httpd_t:s0 tclass=capability
 avc:  denied  { write } for  pid=10888 comm="PassengerHelper" path="anon_inode:[eventfd]" dev=anon_inodefs ino=3696 scontext=unconfined_u:system_r:<%= @scontext %>:s0 tcontext=system_u:object_r:anon_inodefs_t:s0 tclass=file
+# Foreman and node.rb
+avc:  denied  { execute execute_no_trans } for  pid=5118 comm="ruby" name="node.rb" dev=vda2 ino=2753679 scontext=system_u:system_r:<%= @scontext %>:s0 tcontext=system_u:object_r:puppet_etc_t:s0 tclass=file
