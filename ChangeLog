@@ -3,6 +3,7 @@
 * Add scontext master parameter in case it needs to be httpd_t.
 * Allow group read on private SSL files, allows to integrate with The Foreman.
 * Prefix local fact with puppet_ to avoid conflict with The Foreman.
+* Make environment sticky for the agent, now easy to switch nodes.
 
 2013-10-01 - 0.5.5
 * Force servername when using apache_httpd for the master.

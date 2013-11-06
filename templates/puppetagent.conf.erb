@@ -23,6 +23,10 @@
 <% end -%>
 
 [agent]
+<% if scope['::environment'] != 'production' -%>
+    environment = <%= scope['::environment'] %>
+
+<% end -%>
 <% if @report -%>
     # Send report (useful for the Puppet Dashboard)
     report = true
