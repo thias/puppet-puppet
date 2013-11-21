@@ -1,3 +1,4 @@
+2013-11-21 - 0.6.0
 * Update README, including adding an SELinux note (#3).
 * Remove httpd directives for passenger 4.0.x compatibility.
 * Add scontext master parameter in case it needs to be httpd_t.
