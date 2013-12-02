@@ -1,3 +1,5 @@
+* Fix silent cron-repuppet since Notice now has uppercase first letter.
+
 2013-11-21 - 0.6.0
 * Update README, including adding an SELinux note (#3).
 * Remove httpd directives for passenger 4.0.x compatibility.
