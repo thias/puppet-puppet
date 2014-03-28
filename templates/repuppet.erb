@@ -8,7 +8,7 @@
 
 exec puppet agent \
   --no-usecacheonfailure \
-  --logdest=<%= @puppet_log %> ${CONSOLE}
+  --logdest=<%= @puppet_log %> ${CONSOLE} \
 <% if ! @puppet_extra_opts.empty? -%>
   <%= @puppet_extra_opts %> \
 <% end -%>
