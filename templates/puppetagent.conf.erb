@@ -27,6 +27,11 @@
     environment = <%= scope['::environment'] %>
 
 <% end -%>
+<% if @puppet_server -%>
+    # Puppet master host
+    server = <%= @puppet_server %>
+
+<% end %>
 <% if @report -%>
     # Send report (useful for the Puppet Dashboard)
     report = true
