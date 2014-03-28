@@ -8,8 +8,10 @@
 
 exec puppet agent \
   --no-usecacheonfailure \
-  --logdest=<%= @puppet_log %> ${CONSOLE} \
-  --server=<%= @puppet_server %> <%= @puppet_extra_opts %> \
+  --logdest=<%= @puppet_log %> ${CONSOLE}
+<% if ! @puppet_extra_opts.empty? -%>
+  <%= @puppet_extra_opts %> \
+<% end -%>
   --onetime \
   --no-daemonize \
   --waitforcert 0 \

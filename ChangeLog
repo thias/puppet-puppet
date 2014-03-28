@@ -1,4 +1,7 @@
 * Fix silent cron-repuppet since Notice now has uppercase first letter.
+* Put the server in the agent puppet.conf section (@CtrlC-Root, #4).
+* Remove the server from the repuppet script.
+* Sort hashes used in the puppetagent.conf template.
 
 2013-11-21 - 0.6.0
 * Update README, including adding an SELinux note (#3).

@@ -18,7 +18,7 @@
 
     # To enable custom facts
     pluginsync = <%= @pluginsync %>
-<% @main_extraopts.each do |key,value| -%>
+<% @main_extraopts.sort_by {|key,value| key}.each do |key,value| -%>
     <%= key %> = <%= value %>
 <% end -%>
 
@@ -31,7 +31,7 @@
     # Puppet master host
     server = <%= @puppet_server %>
 
-<% end %>
+<% end -%>
 <% if @report -%>
     # Send report (useful for the Puppet Dashboard)
     report = true
@@ -41,9 +41,12 @@
     # Disable running commands. Manual puppet agent runs will allow to
     # apply all pending changes.
     noop = true
-
 <% end -%>
-<% @agent_extraopts.each do |key,value| -%>
+<% if ! @agent_extraopts.empty? -%>
+
+    # Extra options
+<% @agent_extraopts.sort_by {|key,value| key}.each do |key,value| -%>
     <%= key %> = <%= value %>
+<% end -%>
 <% end -%>
 
