@@ -8,7 +8,8 @@ class puppet::params {
       $sysconfig = true
       $rundir = '/var/run/puppet'
     }
-    'Gentoo': {
+    'Gentoo',
+    'Archlinux': {
       $sysconfig = false
       $rundir = '/run/puppet'
     }
