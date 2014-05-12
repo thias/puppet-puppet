@@ -1,3 +1,5 @@
+* Add ArchLinux agent support (@edvinasme, #5).
+
 2014-03-28 - 0.6.1
 * Fix silent cron-repuppet since Notice now has uppercase first letter.
 * Put the server in the agent puppet.conf section (@CtrlC-Root, #4).
