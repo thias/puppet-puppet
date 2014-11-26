@@ -1,5 +1,5 @@
 name 'thias-puppet'
-version '0.6.1'
+version '0.6.2'
 source 'git://github.com/thias/puppet-puppet'
 author 'Matthias Saou'
 license 'Apache 2.0'

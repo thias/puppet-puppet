@@ -1,4 +1,6 @@
+2014-11-26 - 0.6.2
 * Add ArchLinux agent support (@edvinasme, #5).
+* Fix for updates apache_httpd module.
 
 2014-03-28 - 0.6.1
 * Fix silent cron-repuppet since Notice now has uppercase first letter.
