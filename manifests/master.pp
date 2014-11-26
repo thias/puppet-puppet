@@ -105,7 +105,8 @@ class puppet::master (
                 content => template('puppet/httpd-puppet.conf.erb'),
                 notify  => Service['httpd'],
             }
-            apache_httpd { 'worker':
+            class { '::apache_httpd':
+                mpm        => 'worker',
                 listen     => '8140',
                 ssl        => true,
                 modules    => [
