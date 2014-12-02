@@ -4,7 +4,7 @@
 #
 # Sample Usage :
 #   class { 'puppet::master':
-#       runtype => 'service|passenger|none',
+#       runtype => 'service|passenger|puppetserver|none',
 #   }
 #
 class puppet::master (
@@ -107,7 +107,7 @@ class puppet::master (
             }
             class { '::apache_httpd':
                 mpm        => 'worker',
-                listen     => '8140',
+                listen     => [ '8140' ],
                 ssl        => true,
                 modules    => [
                     'auth_basic',
@@ -145,6 +145,14 @@ class puppet::master (
                     content => template("${module_name}/messages.puppetpassenger.erb"),
                 }
             }
+        }
+        'puppetserver': {
+          package { 'puppetserver': ensure => 'installed' }
+          service { 'puppetserver':
+            ensure    => 'running',
+            enable    => true,
+            subscribe => Exec['catpuppetconf'],
+          }
         }
         'none': {
         }
