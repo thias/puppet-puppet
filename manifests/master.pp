@@ -72,8 +72,8 @@ class puppet::master (
     'service': {
       if $::puppet_puppetmaster == 'true' {
         service { 'puppetmaster':
+          ensure    => 'running',
           enable    => true,
-          ensure    => running,
           hasstatus => true,
           subscribe => Exec['catpuppetconf'],
         }
@@ -116,14 +116,14 @@ class puppet::master (
         welcome    => false,
       }
       file { '/etc/puppet/rack':
+        ensure => 'directory',
         owner  => 'root',
         group  => 'root',
-        ensure => directory,
       }
       file { '/etc/puppet/rack/public':
+        ensure => 'directory',
         owner  => 'puppet',
         group  => 'puppet',
-        ensure => directory,
       }
       file { '/etc/puppet/rack/config.ru':
         owner  => 'puppet',
@@ -141,8 +141,8 @@ class puppet::master (
       if $::puppet_puppetmaster == 'true' {
         package { 'puppetserver': ensure => 'installed' }
         service { 'puppetserver':
+          ensure    => 'running',
           enable    => true,
-          ensure    => running,
           subscribe => Exec['catpuppetconf'],
         }
       }

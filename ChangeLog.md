@@ -1,6 +1,7 @@
+#### 2014-12-16 - 0.6.3
 * Fix apache_httpd port with puppet 3.7+.
 * Add support for puppetserver runtype.
-* Remove autonoop parameter, it's easy to do the same (and more) with hiera.
+* Remove autonoop parameter, easy to do the same (and more) with hiera.
 * Add support for clojure puppetserver master.
 
 #### 2014-11-26 - 0.6.2
@@ -29,7 +30,7 @@
 #### 2013-09-19 - 0.5.4
 * Make rundir configurable, changing the default on Gentoo.
 * Fix repuppet with puppet agent 3.3.0.
-* Remove waitforcert from the default options, as it doesn't make much sense.
+* Remove waitforcert from the default options, as it does not make much sense.
 
 #### 2013-07-18 - 0.5.3
 * Fix waitforcert issue with repuppet.
