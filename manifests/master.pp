@@ -139,10 +139,10 @@ class puppet::master (
     }
     'puppetserver': {
       if $::puppet_puppetmaster == 'true' {
+        package { 'puppetserver': ensure => 'installed' }
         service { 'puppetserver':
           enable    => true,
           ensure    => running,
-          hasstatus => true,
           subscribe => Exec['catpuppetconf'],
         }
       }
