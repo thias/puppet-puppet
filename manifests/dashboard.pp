@@ -27,7 +27,7 @@ class puppet::dashboard (
   package { 'puppet-dashboard': ensure => installed }
 
   service { [ 'puppet-dashboard', 'puppet-dashboard-workers' ]:
-    ensure    => running,
+    ensure    => 'running',
     enable    => true,
     hasstatus => true,
   }

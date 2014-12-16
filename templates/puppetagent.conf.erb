@@ -37,7 +37,7 @@
     report = true
 
 <% end -%>
-<% if @puppet_noop -%>
+<% if @forcenoop -%>
     # Disable running commands. Manual puppet agent runs will allow to
     # apply all pending changes.
     noop = true

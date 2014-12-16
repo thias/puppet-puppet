@@ -1,15 +1,10 @@
-# Class: puppet::params
-#
 class puppet::params {
   case $::operatingsystem {
-    'Fedora',
-    'RedHat',
-    'CentOS': {
+    'Fedora', 'RedHat', 'CentOS': {
       $sysconfig = true
       $rundir = '/var/run/puppet'
     }
-    'Gentoo',
-    'Archlinux': {
+    'Gentoo', 'Archlinux': {
       $sysconfig = false
       $rundir = '/run/puppet'
     }

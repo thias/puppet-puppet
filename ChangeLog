@@ -1,4 +1,7 @@
 * Add ArchLinux agent support (@edvinasme, #5).
+* Update apache_httpd for the new class.
+* Remove autonoop parameter, it's easy to do the same (and more) with hiera.
+* Add support for clojure puppetserver master.
 
 2014-03-28 - 0.6.1
 * Fix silent cron-repuppet since Notice now has uppercase first letter.

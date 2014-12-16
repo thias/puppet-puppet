@@ -74,3 +74,21 @@ Note that by default the `puppet::master` class will require the
 rules to make everything work. If you wish to manage the SELinux changes
 separately, set `selinux => false`.
 
+Example puppet master with clojure puppetserver :
+
+```puppet
+class { '::puppet::master':
+  runtype              => 'puppetserver',
+  certname             => 'puppet.example.com',
+  dns_alt_names        => 'puppet.example.lan,puppet',
+  reports              => 'http',
+  storeconfigs         => 'true',
+  storeconfigs_backend => 'puppetdb',
+  rsyslog_file         => '/var/log/puppet/puppetmaster.log',
+  extraopts            => {
+    'environmentpath' => '$confdir/environments',
+    'parser'          => 'future',
+  },
+}
+```
+
