@@ -3,6 +3,7 @@ class puppet::params {
     'Fedora', 'RedHat', 'CentOS': {
       $sysconfig = true
       $rundir = '/var/run/puppet'
+      $ssldir = '\$vardir/ssl'
     }
     'Gentoo', 'Archlinux': {
       $sysconfig = false

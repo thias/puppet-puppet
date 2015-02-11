@@ -9,6 +9,7 @@ class puppet::agent (
   $cron_minute        = fqdn_rand(60),
   # puppet.conf options
   $rundir             = $::puppet::params::rundir,
+  $ssldir             = $::puppet::params::ssldir,
   $pluginsync         = 'true',
   $report             = false,
   $forcenoop          = false,
