@@ -3,6 +3,7 @@ class puppet::master (
   $runtype        = 'service',
   $selinux        = $::selinux,
   $scontext       = 'httpd_passenger_helper_t',
+  $ca_server      = true,
   # puppet.conf options
   $certname       = undef,
   $dns_alt_names  = undef,
