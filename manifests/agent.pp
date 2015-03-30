@@ -1,24 +1,25 @@
 class puppet::agent (
-  $service            = true,
-  $sysconfig          = $::puppet::params::sysconfig,
-  $master             = $::puppet_puppetmaster,
+  $service               = true,
+  $sysconfig             = $::puppet::params::sysconfig,
+  $master                = $::puppet_puppetmaster,
   # Simple hourly cron job, only if the service is disabled
-  $cron_enable        = false,
-  $cron_silent        = false,
-  $cron_hour          = '*',
-  $cron_minute        = fqdn_rand(60),
+  $cron_enable           = false,
+  $cron_silent           = false,
+  $cron_hour             = '*',
+  $cron_minute           = fqdn_rand(60),
   # puppet.conf options
-  $rundir             = $::puppet::params::rundir,
-  $pluginsync         = 'true',
-  $report             = false,
-  $forcenoop          = false,
-  $main_extraopts     = {},
-  $agent_extraopts    = {},
+  $rundir                = $::puppet::params::rundir,
+  $pluginsync            = 'true',
+  $report                = false,
+  $forcenoop             = false,
+  $configure_environment = true,
+  $main_extraopts        = {},
+  $agent_extraopts       = {},
   # sysconfig / repuppet options
-  $puppet_server      = 'puppet',
-  $puppet_port        = '8140',
-  $puppet_log         = '/var/log/puppet/puppet.log',
-  $puppet_extra_opts  = '',
+  $puppet_server         = 'puppet',
+  $puppet_port           = '8140',
+  $puppet_log            = '/var/log/puppet/puppet.log',
+  $puppet_extra_opts     = '',
 ) inherits ::puppet::params {
 
   include '::puppet::common'
