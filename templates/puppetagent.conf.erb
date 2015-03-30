@@ -23,7 +23,7 @@
 <% end -%>
 
 [agent]
-<% if scope['::environment'] != 'production' -%>
+<% if scope['::environment'] != 'production' && @configure_environment -%>
     environment = <%= scope['::environment'] %>
 
 <% end -%>
