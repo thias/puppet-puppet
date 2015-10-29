@@ -3,6 +3,7 @@ class puppet::master (
   $runtype        = 'service',
   $selinux        = $::selinux,
   $scontext       = 'httpd_passenger_helper_t',
+  $confdir        = $::puppet::params::confdir,
   # puppet.conf options
   $certname       = undef,
   $dns_alt_names  = undef,
@@ -18,19 +19,22 @@ class puppet::master (
   $dbsocket       = undef,
   $rsyslog_file   = false,
   $extraopts      = {},
-) {
+) inherits ::puppet::params {
 
   include '::puppet::common'
 
   # Package + partial configuration file + concatenation exec
   if $ensure != 'absent' {
 
-    package { 'puppet-server': ensure => installed }
-    if $storeconfigs {
-      package { 'rubygem-activerecord': ensure => installed }
+    if versioncmp($::puppetversion, '4') < 0 {
+      package { 'puppet-server': ensure => 'installed' }
+      if $storeconfigs {
+        # FIXME: Not sure if activerecord is needed for puppet 4
+        package { 'rubygem-activerecord': ensure => installed }
+      }
     }
 
-    file { '/etc/puppet/puppetmaster.conf':
+    file { "${confdir}/puppetmaster.conf":
       owner   => 'root',
       group   => 'puppet',
       mode    => '0640',
@@ -41,7 +45,7 @@ class puppet::master (
     # a chicken and egg problem, which we solve here
     if $::puppet_puppetmaster == 'true' {
       # Merge agent+master configs for the master
-      File['/etc/puppet/puppetmaster.conf'] ~> Exec['catpuppetconf']
+      File["${confdir}/puppetmaster.conf"] ~> Exec['catpuppetconf']
     }
 
     if $rsyslog_file != false {
@@ -58,9 +62,9 @@ class puppet::master (
   } else {
 
     file { [
-      '/etc/puppet/puppetmaster.conf',
-      '/etc/puppet/puppetagent.conf',
-      '/etc/rsyslog.d/puppet-master.conf',
+      "${confdir}/puppetmaster.conf",
+      "${confdir}/puppetagent.conf",
+      "/etc/rsyslog.d/puppet-master.conf",
     ]:
       ensure => absent,
     }
