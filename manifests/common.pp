@@ -1,7 +1,8 @@
-class puppet::common {
+class puppet::common (
+  $confdir = $::puppet::params::confdir,
+  ) inherits ::puppet::params {
   exec { 'catpuppetconf':
-    command     => '/bin/cat /etc/puppet/puppetagent.conf /etc/puppet/puppetmaster.conf > /etc/puppet/puppet.conf',
+    command     => "/bin/cat ${confdir}/puppetagent.conf ${confdir}/puppetmaster.conf > ${confdir}/puppet.conf",
     refreshonly => true,
   }
 }
-

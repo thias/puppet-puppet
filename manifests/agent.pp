@@ -9,6 +9,9 @@ class puppet::agent (
   $cron_minute        = fqdn_rand(60),
   # puppet.conf options
   $rundir             = $::puppet::params::rundir,
+  $confdir            = $::puppet::params::confdir,
+  $logdir             = $::puppet::params::logdir,
+  $ssldir             = $::puppet::params::ssldir,
   $pluginsync         = 'true',
   $report             = false,
   $forcenoop          = false,
@@ -25,6 +28,12 @@ class puppet::agent (
 
   $puppetversion = $::puppetversion
 
+  if versioncmp($::puppetversion, '4') > 0 {
+    $agent_extraopts_filtered = delete($agent_extraopts, 'stringify_facts')
+  } else {
+    $agent_extraopts_filtered = $agent_extraopts
+  }
+
   # Configuration changes, make it easy to deploy new options
   # and change to mode 600 so that regular users can't easily find the server
   if $sysconfig {
@@ -38,10 +47,10 @@ class puppet::agent (
   # Main configuration for the service. Always install, just in case the
   # service is run when it shouldn't have been (we respect noop here).
   if $master {
-    $agentconfname = '/etc/puppet/puppetagent.conf'
+    $agentconfname = "${confdir}/puppetagent.conf"
     File[$agentconfname] ~> Exec['catpuppetconf']
   } else {
-    $agentconfname = '/etc/puppet/puppet.conf'
+    $agentconfname = "${confdir}/puppet.conf"
   }
   file { $agentconfname:
     owner   => 'root',
@@ -51,7 +60,7 @@ class puppet::agent (
   }
 
   # Lock down puppet logs, to not give everyone read access to them
-  file { '/var/log/puppet':
+  file { $logdir:
     ensure => directory,
     owner  => 'puppet',
     group  => 'puppet',
