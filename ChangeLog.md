@@ -1,3 +1,5 @@
+* Fix puppetagent.conf.erb with puppet 2.7.
+
 #### 2014-12-16 - 0.6.3
 * Fix apache_httpd port with puppet 3.7+.
 * Add support for puppetserver runtype.

@@ -23,8 +23,8 @@
 <% end -%>
 
 [agent]
-<% if scope['::environment'] != 'production' -%>
-    environment = <%= scope['::environment'] %>
+<% if scope.lookupvar('::environment') != 'production' -%>
+    environment = <%= scope.lookupvar('::environment') %>
 
 <% end -%>
 <% if @puppet_server -%>
