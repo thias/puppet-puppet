@@ -9,7 +9,7 @@ class puppet::params {
     $suffix = 'puppet'
     $confdir = '/etc/puppet'
     $logdir = '/var/log/puppet'
-    $ssldir = '/var/lib/puppet/ssl'
+    $ssldir = '$vardir/ssl'
   }
 
   case $::operatingsystem {
