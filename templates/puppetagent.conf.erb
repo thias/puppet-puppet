@@ -23,7 +23,7 @@
 <% end -%>
 
 [agent]
-<% if scope.lookupvar('::environment') != 'production' -%>
+<% if scope.lookupvar('::environment') != 'production' and @configure_environment -%>
     environment = <%= scope.lookupvar('::environment') %>
 
 <% end -%>
