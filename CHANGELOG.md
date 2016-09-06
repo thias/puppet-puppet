@@ -1,4 +1,8 @@
+#### 2016-09-06 - 1.0.0
 * Fix puppetagent.conf.erb with puppet 2.7.
+* Add Puppet 4 support (@jesusrodrigo, #10).
+* Add support disabling CA for masters (@kostyrevaa, #8).
+* Add support for not setting agent environment explicitly (@trosine, #9).
 
 #### 2014-12-16 - 0.6.3
 * Fix apache_httpd port with puppet 3.7+.
