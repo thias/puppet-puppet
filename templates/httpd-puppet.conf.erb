@@ -14,11 +14,20 @@ PassengerStatThrottleRate 120
 
     SSLCertificateFile /var/lib/puppet/ssl/certs/<%= @https_certname %>.pem
     SSLCertificateKeyFile /var/lib/puppet/ssl/private_keys/<%= @https_certname %>.pem
+    <%- if @ca_server -%>
     SSLCertificateChainFile /var/lib/puppet/ssl/ca/ca_crt.pem
     SSLCACertificateFile /var/lib/puppet/ssl/ca/ca_crt.pem
+    <%- else -%>
+    SSLCertificateChainFile /var/lib/puppet/ssl/certs/ca.pem
+    SSLCACertificateFile /var/lib/puppet/ssl/certs/ca.pem
+    <%- end -%>
     # If Apache complains about invalid signatures on the CRL, you can try disabling
     # CRL checking by commenting the next line, but this is not recommended.
+    <%- if @ca_server -%>
     SSLCARevocationFile /var/lib/puppet/ssl/ca/ca_crl.pem
+    <%- else -%>
+    SSLCARevocationFile /var/lib/puppet/ssl/crl.pem
+    <%- end -%>
     SSLVerifyClient optional
     SSLVerifyDepth 1
     SSLOptions +StdEnvVars
