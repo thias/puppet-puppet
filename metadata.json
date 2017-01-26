@@ -7,6 +7,9 @@
   "source": "https://github.com/thias/puppet-puppet",
   "project_page": "https://github.com/thias/puppet-puppet",
   "issues_url": "https://github.com/thias/puppet-puppet/issues",
+  "dependencies": [
+    {"name":"puppetlabs/stdlib","version_requirement":">= 3.2.0"}
+  ],
   "tags": ["puppet"],
   "operatingsystem_support": [
     {

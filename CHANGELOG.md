@@ -1,5 +1,6 @@
 * Fix repuppet PATH with Puppet Collections agent.
 * Improvements with Puppet 4.
+* Use getvar() to check/get fact without triggering a warning.
 
 #### 2016-09-06 - 1.0.0
 * Fix puppetagent.conf.erb with puppet 2.7.

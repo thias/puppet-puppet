@@ -6,7 +6,7 @@ class puppet::params {
     $puppet4 = false
   }
 
-  if $facts['puppet_puppetmaster'] != undef {
+  if getvar('::puppet_puppetmaster') {
     $master = true
   } else {
     $master = false
