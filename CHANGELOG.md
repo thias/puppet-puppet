@@ -1,3 +1,6 @@
+* Fix repuppet PATH with Puppet Collections agent.
+* Improvements with Puppet 4.
+
 #### 2016-09-06 - 1.0.0
 * Fix puppetagent.conf.erb with puppet 2.7.
 * Add Puppet 4 support (@jesusrodrigo, #10).

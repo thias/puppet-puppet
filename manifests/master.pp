@@ -24,13 +24,16 @@ class puppet::master (
 
   include '::puppet::common'
 
+  $puppetmaster = $::puppet::params::master
+
   # Package + partial configuration file + concatenation exec
   if $ensure != 'absent' {
 
-    if versioncmp($::puppetversion, '4') < 0 {
+    $puppet4 = $::puppet::params::puppet4
+
+    if ! $puppet4 {
       package { 'puppet-server': ensure => 'installed' }
       if $storeconfigs {
-        # FIXME: Not sure if activerecord is needed for puppet 4
         package { 'rubygem-activerecord': ensure => installed }
       }
     }
@@ -44,7 +47,7 @@ class puppet::master (
 
     # This will only work once the puppetmaster fact is installed, it's
     # a chicken and egg problem, which we solve here
-    if $::puppet_puppetmaster == 'true' {
+    if $puppetmaster == 'true' {
       # Merge agent+master configs for the master
       File["${confdir}/puppetmaster.conf"] ~> Exec['catpuppetconf']
     }
@@ -75,7 +78,7 @@ class puppet::master (
   # Main puppet master process, with multiple ways of running it
   case $runtype {
     'service': {
-      if $::puppet_puppetmaster == 'true' {
+      if $puppetmaster == 'true' {
         service { 'puppetmaster':
           ensure    => 'running',
           enable    => true,
@@ -143,7 +146,7 @@ class puppet::master (
       }
     }
     'puppetserver': {
-      if $::puppet_puppetmaster == 'true' {
+      if $puppetmaster == 'true' {
         package { 'puppetserver': ensure => 'installed' }
         service { 'puppetserver':
           ensure    => 'running',

@@ -6,6 +6,11 @@
 # For interactive runs, also display to the console
 [ -z "$TERM" ] && CONSOLE="" || CONSOLE="--logdest=console"
 
+<% if @puppet4 -%>
+# For Puppet Collections packages, we need to update $PATH
+[ -f /etc/profile.d/puppet-agent.sh ] && . /etc/profile.d/puppet-agent.sh
+
+<% end -%>
 exec puppet agent \
   --no-usecacheonfailure \
   --logdest=<%= @puppet_log %> ${CONSOLE} \

@@ -1,15 +1,29 @@
 class puppet::params {
 
-  if versioncmp($::puppetversion, '4') > 0 {
+  if versioncmp($::puppetversion, '4') >= 0 {
+    $puppet4 = true
+  } else {
+    $puppet4 = false
+  }
+
+  if $facts['puppet_puppetmaster'] != undef {
+    $master = true
+  } else {
+    $master = false
+  }
+
+  if $puppet4 {
     $suffix = 'puppetlabs'
     $confdir = '/etc/puppetlabs/puppet'
     $logdir = '/var/log/puppetlabs/puppet'
     $ssldir = '/etc/puppetlabs/puppet/ssl'
+    $puppet_log = '/var/log/puppetlabs/puppet/puppet.log'
   } else {
     $suffix = 'puppet'
     $confdir = '/etc/puppet'
     $logdir = '/var/log/puppet'
     $ssldir = '$vardir/ssl'
+    $puppet_log = '/var/log/puppet/puppet.log'
   }
 
   case $::operatingsystem {

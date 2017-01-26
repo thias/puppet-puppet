@@ -1,4 +1,11 @@
 [master]
+<% if @puppet4 -%>
+    vardir = /opt/puppetlabs/server/data/puppetserver
+    logdir = /var/log/puppetlabs/puppetserver
+    rundir = /var/run/puppetlabs/puppetserver
+    pidfile = /var/run/puppetlabs/puppetserver/puppetserver.pid
+    codedir = /etc/puppetlabs/code
+<% end -%>
 <% if @certname -%>
     certname = <%= @certname %>
 <% end -%>

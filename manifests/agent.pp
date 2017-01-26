@@ -1,7 +1,7 @@
 class puppet::agent (
   $service               = true,
   $sysconfig             = $::puppet::params::sysconfig,
-  $master                = $::puppet_puppetmaster,
+  $master                = $::puppet::params::master,
   # Simple hourly cron job, only if the service is disabled
   $cron_enable           = false,
   $cron_silent           = false,
@@ -21,15 +21,15 @@ class puppet::agent (
   # sysconfig / repuppet options
   $puppet_server         = 'puppet',
   $puppet_port           = '8140',
-  $puppet_log            = '/var/log/puppet/puppet.log',
+  $puppet_log            = $::puppet::params::puppet_log,
   $puppet_extra_opts     = '',
 ) inherits ::puppet::params {
 
   include '::puppet::common'
 
-  $puppetversion = $::puppetversion
+  $puppet4 = $::puppet::params::puppet4
 
-  if versioncmp($::puppetversion, '4') > 0 {
+  if $puppet4 {
     $agent_extraopts_filtered = delete($agent_extraopts, 'stringify_facts')
   } else {
     $agent_extraopts_filtered = $agent_extraopts

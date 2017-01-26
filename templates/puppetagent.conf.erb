@@ -1,3 +1,4 @@
+<% if ! @puppet4 -%>
 [main]
     # The Puppet log directory.
     # The default value is '$vardir/log'.
@@ -18,10 +19,11 @@
 
     # To enable custom facts
     pluginsync = <%= @pluginsync %>
-<% @main_extraopts.sort_by {|key,value| key}.each do |key,value| -%>
+    <%- @main_extraopts.sort_by {|key,value| key}.each do |key,value| -%>
     <%= key %> = <%= value %>
-<% end -%>
+    <%- end -%>
 
+<% end -%>
 [agent]
 <% if scope.lookupvar('::environment') != 'production' and @configure_environment -%>
     environment = <%= scope.lookupvar('::environment') %>
