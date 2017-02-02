@@ -1,3 +1,4 @@
+#### 2017-02-02 - 1.0.1
 * Fix repuppet PATH with Puppet Collections agent.
 * Improvements with Puppet 4.
 * Use getvar() to check/get fact without triggering a warning.
