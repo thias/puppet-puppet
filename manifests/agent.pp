@@ -40,7 +40,7 @@ class puppet::agent (
   if $sysconfig {
     file { '/etc/sysconfig/puppet':
       owner   => 'root',
-      group   => 'puppet',
+      group   => 'root',
       mode    => '0640',
       content => template('puppet/sysconfig-puppet.erb'),
     }
@@ -55,16 +55,17 @@ class puppet::agent (
   }
   file { $agentconfname:
     owner   => 'root',
-    group   => 'puppet',
+    group   => 'root',
     mode    => '0640',
     content => template('puppet/puppetagent.conf.erb'),
   }
 
   # Lock down puppet logs, to not give everyone read access to them
+  # Puppet automatically changes ownership to 'puppet' if user/group exist
   file { $logdir:
-    ensure => directory,
-    owner  => 'puppet',
-    group  => 'puppet',
+    ensure => 'directory',
+    owner  => undef,
+    group  => undef,
     mode   => '0750',
   }
 

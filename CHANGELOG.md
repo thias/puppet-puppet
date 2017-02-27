@@ -1,3 +1,5 @@
+* Fix for Puppet 4 AIO which does not include puppet user or group.
+
 #### 2017-02-02 - 1.0.1
 * Fix repuppet PATH with Puppet Collections agent.
 * Improvements with Puppet 4.
