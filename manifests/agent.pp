@@ -97,7 +97,7 @@ class puppet::agent (
           owner   => 'root',
           group   => 'root',
           mode    => '0750',
-          content => "#!/bin/bash \n/usr/local/sbin/repuppet${cmd_noop} --show_diff --color=false | egrep -i -v '^Notice: Finished catalog run in'\n",
+          content => "#!/bin/bash \n/usr/local/sbin/repuppet${cmd_noop} --show_diff --color=false | egrep -i -v '^Notice: (Applied|Finished) catalog '\n",
         }
       }
       cron { 'puppet-agent':

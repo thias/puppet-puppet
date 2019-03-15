@@ -1,4 +1,5 @@
 * Fix for Puppet 4 AIO which does not include puppet user or group.
+* Properly silence cron-repuppet when no errors happen.
 
 #### 2017-02-02 - 1.0.1
 * Fix repuppet PATH with Puppet Collections agent.
