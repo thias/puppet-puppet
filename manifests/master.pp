@@ -1,7 +1,7 @@
 class puppet::master (
   $ensure         = 'present',
   $runtype        = 'service',
-  $selinux        = $::selinux,
+  $selinux        = getvar('os.selinux'),
   $scontext       = 'httpd_passenger_helper_t',
   $ca_server      = true,
   $confdir        = $::puppet::params::confdir,
@@ -34,7 +34,7 @@ class puppet::master (
     if ! $puppet4 {
       package { 'puppet-server': ensure => 'installed' }
       if $storeconfigs {
-        package { 'rubygem-activerecord': ensure => installed }
+        package { 'rubygem-activerecord': ensure => 'installed' }
       }
     }
 
@@ -60,7 +60,7 @@ class puppet::master (
         content => template('puppet/rsyslog-puppet-master.conf.erb'),
       }
     } else {
-      file { '/etc/rsyslog.d/puppet-master.conf': ensure => absent }
+      file { '/etc/rsyslog.d/puppet-master.conf': ensure => 'absent' }
     }
 
   } else {
@@ -70,7 +70,7 @@ class puppet::master (
       "${confdir}/puppetagent.conf",
       "/etc/rsyslog.d/puppet-master.conf",
     ]:
-      ensure => absent,
+      ensure => 'absent',
     }
 
   }
@@ -86,7 +86,7 @@ class puppet::master (
           subscribe => Exec['catpuppetconf'],
         }
       }
-      if $selinux and $::selinux_enforced {
+      if $selinux and ($facts['os']['selinux']['enforced'] == true) {
         selinux::audit2allow { 'puppetservice':
           source => "puppet:///modules/${module_name}/messages.puppetservice",
         }
@@ -94,10 +94,10 @@ class puppet::master (
     }
     'passenger': {
       $https_certname = $certname ? {
-        undef   => $::fqdn,
+        undef   => $facts['networking']['fqdn'],
         default => $certname,
       }
-      package { 'mod_passenger': ensure => installed }
+      package { 'mod_passenger': ensure => 'installed' }
       file { '/etc/httpd/conf.d/puppet.conf':
         owner   => 'root',
         group   => 'root',
@@ -139,7 +139,7 @@ class puppet::master (
         mode   => '0644',
         source => "puppet:///modules/${module_name}/config.ru",
       }
-      if $selinux and $::selinux_enforced {
+      if $selinux and ($facts['os']['selinux']['enforced'] == true) {
         selinux::audit2allow { 'puppetpassenger':
           content => template("${module_name}/messages.puppetpassenger.erb"),
         }

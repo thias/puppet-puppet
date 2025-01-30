@@ -1,3 +1,5 @@
+* Remove legacy facts usage.
+
 #### 2019-06-06 - 1.0.2
 * Fix for Puppet 4 AIO which does not include puppet user or group.
 * Properly silence cron-repuppet when no errors happen.

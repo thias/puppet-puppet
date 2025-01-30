@@ -1,12 +1,12 @@
 class puppet::params {
 
-  if versioncmp($::puppetversion, '4') >= 0 {
+  if versioncmp($facts['puppetversion'], '4') >= 0 {
     $puppet4 = true
   } else {
     $puppet4 = false
   }
 
-  if getvar('::puppet_puppetmaster') {
+  if getvar('facts.puppet_puppetmaster') {
     $master = true
   } else {
     $master = false
@@ -26,7 +26,7 @@ class puppet::params {
     $puppet_log = '/var/log/puppet/puppet.log'
   }
 
-  case $::operatingsystem {
+  case $facts['os']['name'] {
     'Fedora', 'RedHat', 'CentOS': {
       $sysconfig = true
       $rundirpre = '/var/run'
