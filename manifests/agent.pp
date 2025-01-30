@@ -49,14 +49,16 @@ class puppet::agent (
   # service is run when it shouldn't have been (we respect noop here).
   if $master {
     $agentconfname = "${confdir}/puppetagent.conf"
+    $agentconfmode = '0644'
     File[$agentconfname] ~> Exec['catpuppetconf']
   } else {
     $agentconfname = "${confdir}/puppet.conf"
+    $agentconfmode = '0640'
   }
   file { $agentconfname:
     owner   => 'root',
     group   => 'root',
-    mode    => '0640',
+    mode    => $agentconfmode,
     content => template('puppet/puppetagent.conf.erb'),
   }
 
