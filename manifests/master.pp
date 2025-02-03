@@ -86,7 +86,7 @@ class puppet::master (
           subscribe => Exec['catpuppetconf'],
         }
       }
-      if $selinux and ($facts['os']['selinux']['enforced'] == true) {
+      if $selinux and $facts.get('os.selinux.enabled') {
         selinux::audit2allow { 'puppetservice':
           source => "puppet:///modules/${module_name}/messages.puppetservice",
         }
@@ -139,7 +139,7 @@ class puppet::master (
         mode   => '0644',
         source => "puppet:///modules/${module_name}/config.ru",
       }
-      if $selinux and ($facts['os']['selinux']['enforced'] == true) {
+      if $selinux and $facts.get('os.selinux.enabled') {
         selinux::audit2allow { 'puppetpassenger':
           content => template("${module_name}/messages.puppetpassenger.erb"),
         }
